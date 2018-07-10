@@ -4,6 +4,109 @@ $(document).ready(function() {
   var timeLeft = 15;
   var countdown;
 
+  var arrayQuestions = [
+    {
+      question:
+        "According to the internet, what is the world's happiest animal?",
+      choice1: 'wallaby',
+      choice2: 'kangaroo',
+      choice3: 'koala',
+      choice4: 'quokka',
+      answer: 4,
+      fact:
+        'These cute animals have a signature smile which led many to believe they are always happy.'
+    },
+    {
+      question: 'You can find quokkas only in',
+      choice1: 'The Galapagos Islands',
+      choice2: 'Western Australia',
+      choice3: 'The Amazon rainforest',
+      choice4: 'Northern Ireland',
+      answer: 2,
+      fact:
+        'Quokkas are found only in Western Australia, mostly in Rottnest Island.'
+    },
+    {
+      question: 'The quokka is a ',
+      choice1: 'marsupial',
+      choice2: 'rodent',
+      choice3: 'bear',
+      choice4: 'cat',
+      answer: 1,
+      fact: 'The quokka is a marsupial and a species of wallaby.'
+    },
+    {
+      question: 'The closest relative of the quokka is the ',
+      choice1: 'wallaby',
+      choice2: 'platypus',
+      choice3: 'koala',
+      choice4: 'rat',
+      answer: 1,
+      fact: 'The quokka is closely related to wallabies.'
+    },
+    {
+      question: 'What do you call a baby quokka?',
+      choice1: 'quokling',
+      choice2: 'quoklet',
+      choice3: 'juoquy',
+      choice4: 'joey',
+      answer: 4,
+      fact: 'A baby quokka is called a joey'
+    },
+    {
+      question: 'Which of the following is true? A quokka is ',
+      choice1: 'nocturnal and a meat-eater',
+      choice2: 'a herbivore and is active during the day',
+      choice3: 'nocturnal and a plant-eater',
+      choice4: 'active during the day and a carnivore',
+      answer: 3,
+      fact:
+        'Quokkas are herbivores who primarily feed at night. They eat the leaves, stems, and bark of many plants in addition to grass.'
+    },
+    {
+      question: 'Which of the following have pouches to carry their young?',
+      choice1: 'kangaroo',
+      choice2: 'wallaby',
+      choice3: 'quokka',
+      choice4: 'all of the above',
+      answer: 4,
+      fact:
+        'Kangaroos, wallabies, and quokkas are marsupials, which means they have pouches in which they carry their young.'
+    },
+    {
+      question: 'Which of the following is true?',
+      choice1: 'The quokka is able to go for months without a drink',
+      choice2: "The quokka's main diet consists of thin bamboo shoots",
+      choice3: 'Male quokkas constantly fight over potential mates',
+      choice4: 'Quokkas are very gentle',
+      answer: 1,
+      fact:
+        'If necessary, quokkas can survive for long periods of time without food or water by living off the fat stored in their tails.'
+    },
+    {
+      question: 'Which of the following is false?',
+      choice1: 'Quokkas regurgitate their food and eat it again',
+      choice2: "You can't own one",
+      choice3: 'It is illegal to touch quokkas',
+      choice4: 'Only kids are allowed to feed quokkas',
+      answer: 4,
+      fact:
+        "Feeding quokkas is discouraged because 'human food' can cause dehydration and malnourishment, both of which are detrimental to the quokka's health."
+    },
+    {
+      question:
+        'How do female quokkas protect their young when pursued by a predator?',
+      choice1: 'It carries it young in its pouch and runs like hell',
+      choice2: 'it leaves the baby in a safe place and then fights',
+      choice3: 'It fights fiercely with baby in pouch',
+      choice4:
+        "They don't. It ejects the baby from its pouch and sacrifices it in order to escape.",
+      answer: 4,
+      fact:
+        'If a mama quokka is threatened by a predator she will often throw her baby on the ground to distract the predator and save her own life.'
+    }
+  ];
+
   function startClock() {
     clearInterval(countdown);
     countdown = setInterval(decrement, 1000);
