@@ -7,7 +7,6 @@ $(document).ready(function() {
   var timesUp;
   var delayBetweenQuestions = 5000;
   var factTimeout;
-  var userChoice;
   var currentIndex = 0;
   var ansCorrect = 0;
   var ansIncorrect = 0;
@@ -168,12 +167,17 @@ $(document).ready(function() {
 
   function displayScore() {}
 
-  function checkAnswer(answer) {
-    if (answer === arrayQuestions[currentIndex].answer.toString()) {
+  function checkAnswer(answer, correctAnswer) {
+    if (answer === correctAnswer) {
       return 'Correct!';
     } else {
       return 'Duh...Nope';
     }
+  }
+  function displayResults(result, correctAnswer) {
+    $('.toggle').text('');
+    $('#result').text(result);
+    $('#fact').text(arrayQuestions[currentIndex].fact);
   }
 
   $('.choice').hover(
@@ -186,6 +190,7 @@ $(document).ready(function() {
   );
 
   $('#btnStart').on('click', function() {
+    $('.toggle').text('');
     $('.toggle').show();
     $('#btnStart').hide();
     currentIndex = 0;
@@ -193,10 +198,11 @@ $(document).ready(function() {
   });
 
   $('.choice').on('click', function() {
-    userChoice = $(this)
+    var userChoice = $(this)
       .attr('id')
       .slice(-1);
-
-    console.log(userChoice, checkAnswer(userChoice), currentIndex);
+    var correctAnswer = arrayQuestions[currentIndex].answer.toString();
+    var result = checkAnswer(userChoice, correctAnswer);
+    displayResults(result, correctAnswer);
   });
 });
