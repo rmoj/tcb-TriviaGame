@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
   var timeLimit = 15; //constant
-  var delayBetweenQuestions = 5000; //constant
+  var delayBetweenQuestions = 2000; //constant
   var timeLeft;
   var countdown;
   var timesUp;
@@ -115,18 +115,20 @@ $(document).ready(function() {
   ];
 
   function initQuiz() {
-    currentIndex = 0;
+    currentIndex = 9; //change this
     ansCorrect = 0;
     ansIncorrect = 0;
     ansNoAnswer = 0;
     clearContents();
     $('.timer').show();
+    $('#start').hide();
+    $('.finalScore').hide();
+    displayQuestion(currentIndex);
   }
 
   function clearContents() {
     $('.question').text('');
     $('.results').text('');
-    $('.finalScore').text('');
   }
 
   function startClock() {
@@ -220,13 +222,8 @@ $(document).ready(function() {
     }
   );
 
-  $('#btnStart').on('click', function() {
-    clearContents();
-    $('.timer').show();
-    $('.question').show();
-    $('#btnStart').hide();
-    currentIndex = 0;
-    displayQuestion(currentIndex);
+  $('button').on('click', function() {
+    initQuiz();
   });
 
   $('.choice').on('click', function() {
@@ -238,6 +235,4 @@ $(document).ready(function() {
     resetClock();
     displayResults(result, correctAnswer);
   });
-
-  $('#restart').on('click', function() {});
 });
