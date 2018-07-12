@@ -38,7 +38,8 @@ h1 {
   height: 520px;
   width: 100%;
   display: grid;
-  background: radial-gradient(
+  background-color: white;
+  /* background: radial-gradient(
         circle,
         #b3cca2 0.75em,
         rgba(255, 255, 255, 0) 0.75em,
@@ -74,11 +75,7 @@ h1 {
   background-color: #ffdc00;
   background-repeat: repeat;
   border-bottom-right-radius: 25px;
-  border-bottom-left-radius: 25px;
-}
-
-#time {
-  display: none;
+  border-bottom-left-radius: 25px; */
 }
 
 #start {
@@ -93,7 +90,9 @@ button {
   border-radius: 12px;
 }
 
-.toggle {
+.timer,
+.question,
+.results {
   display: none;
   margin: 0 auto;
 }

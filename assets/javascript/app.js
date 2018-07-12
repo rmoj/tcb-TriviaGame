@@ -22,7 +22,7 @@ $(document).ready(function() {
       choice4: 'quokka',
       answer: 4,
       fact:
-        'These cute animals have a signature smile which led many to believe they are always happy.'
+        'Quokkas have a signature smile which led many to believe they are always happy.'
     },
     {
       question: 'You can find quokkas only in',
@@ -115,16 +115,20 @@ $(document).ready(function() {
     }
   ];
 
+  function clearContents() {
+    $('.question').text('');
+    $('.results').text('');
+  }
+
   function startClock() {
     clearInterval(countdown);
     timeLeft = timeLimit;
     clearTimeout(timesUp);
     countdown = setInterval(decrement, 1000);
     timesUp = setTimeout(function() {
-      if (currentIndex < arrayQuestions.length - 1) {
-        displayFact();
-        ansNoAnswer++;
-      } else {
+      displayResults('Out of Time!', arrayQuestions[currentIndex].answer);
+      ansNoAnswer++;
+      if (currentIndex >= arrayQuestions.length - 1) {
         displayScore();
       }
     }, timeLimit * 1000);
@@ -138,7 +142,7 @@ $(document).ready(function() {
       reset();
     }
   }
-  function reset() {
+  function resetClock() {
     clearInterval(countdown);
     clearTimeout(timesUp);
     timeLeft = timeLimit;
@@ -149,15 +153,18 @@ $(document).ready(function() {
   }
 
   function displayQuestion(i) {
+    $('.results').hide();
+    $('.question').show();
     $('#question').text(arrayQuestions[i].question);
     $('#choice1').text(arrayQuestions[i].choice1);
     $('#choice2').text(arrayQuestions[i].choice2);
     $('#choice3').text(arrayQuestions[i].choice3);
     $('#choice4').text(arrayQuestions[i].choice4);
+    startClock();
   }
 
   function displayFact() {
-    $('.toggle').text('');
+    clearContents();
     $('#choice1').text(arrayQuestions[currentIndex].fact);
     factTimeout = setTimeout(function() {
       currentIndex++;
@@ -174,8 +181,11 @@ $(document).ready(function() {
       return 'Duh...Nope';
     }
   }
+
   function displayResults(result, correctAnswer) {
-    $('.toggle').text('');
+    clearContents();
+    $('.question').hide();
+    $('.results').show();
     $('#result').text(result);
     $('#fact').text(arrayQuestions[currentIndex].fact);
   }
@@ -190,8 +200,9 @@ $(document).ready(function() {
   );
 
   $('#btnStart').on('click', function() {
-    $('.toggle').text('');
-    $('.toggle').show();
+    clearContents();
+    $('.timer').show();
+    $('.question').show();
     $('#btnStart').hide();
     currentIndex = 0;
     displayQuestion(currentIndex);
