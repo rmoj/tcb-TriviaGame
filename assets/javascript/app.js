@@ -168,8 +168,11 @@ $(document).ready(function() {
 
   function displayScore() {}
 
-  function checkAnswer(i) {
-    if (arrayQuestions[i].answer) {
+  function checkAnswer(answer) {
+    if (answer === arrayQuestions[currentIndex].answer.toString()) {
+      return 'Correct!';
+    } else {
+      return 'Duh...Nope';
     }
   }
 
@@ -193,5 +196,7 @@ $(document).ready(function() {
     userChoice = $(this)
       .attr('id')
       .slice(-1);
+
+    console.log(userChoice, checkAnswer(userChoice), currentIndex);
   });
 });
