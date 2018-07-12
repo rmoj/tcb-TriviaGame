@@ -6,7 +6,6 @@ $(document).ready(function() {
   var countdown;
   var timesUp;
   var delayBetweenQuestions = 5000;
-  var factTimeout;
   var currentIndex = 0;
   var ansCorrect = 0;
   var ansIncorrect = 0;
@@ -139,13 +138,13 @@ $(document).ready(function() {
       timeLeft--;
       displayTime();
     } else {
-      reset();
+      resetClock();
     }
   }
+
   function resetClock() {
     clearInterval(countdown);
     clearTimeout(timesUp);
-    timeLeft = timeLimit;
   }
 
   function displayTime() {
@@ -161,15 +160,6 @@ $(document).ready(function() {
     $('#choice3').text(arrayQuestions[i].choice3);
     $('#choice4').text(arrayQuestions[i].choice4);
     startClock();
-  }
-
-  function displayFact() {
-    clearContents();
-    $('#choice1').text(arrayQuestions[currentIndex].fact);
-    factTimeout = setTimeout(function() {
-      currentIndex++;
-      displayQuestion(currentIndex);
-    }, delayBetweenQuestions);
   }
 
   function displayScore() {}
@@ -188,6 +178,10 @@ $(document).ready(function() {
     $('.results').show();
     $('#result').text(result);
     $('#fact').text(arrayQuestions[currentIndex].fact);
+    var resultsTimeout = setTimeout(function() {
+      currentIndex++;
+      displayQuestion(currentIndex);
+    }, delayBetweenQuestions);
   }
 
   $('.choice').hover(
@@ -214,6 +208,7 @@ $(document).ready(function() {
       .slice(-1);
     var correctAnswer = arrayQuestions[currentIndex].answer.toString();
     var result = checkAnswer(userChoice, correctAnswer);
+    resetClock();
     displayResults(result, correctAnswer);
   });
 });
