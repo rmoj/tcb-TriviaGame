@@ -1,11 +1,11 @@
 'use strict';
 
 $(document).ready(function() {
-  var timeLimit = 15;
+  var timeLimit = 15; //constant
+  var delayBetweenQuestions = 5000; //constant
   var timeLeft;
   var countdown;
   var timesUp;
-  var delayBetweenQuestions = 5000;
   var currentIndex = 0;
   var ansCorrect = 0;
   var ansIncorrect = 0;
@@ -114,9 +114,19 @@ $(document).ready(function() {
     }
   ];
 
+  function initQuiz() {
+    currentIndex = 0;
+    ansCorrect = 0;
+    ansIncorrect = 0;
+    ansNoAnswer = 0;
+    clearContents();
+    $('.timer').show();
+  }
+
   function clearContents() {
     $('.question').text('');
     $('.results').text('');
+    $('.finalScore').text('');
   }
 
   function startClock() {
@@ -152,14 +162,18 @@ $(document).ready(function() {
   }
 
   function displayQuestion(i) {
-    $('.results').hide();
-    $('.question').show();
-    $('#question').text(arrayQuestions[i].question);
-    $('#choice1').text(arrayQuestions[i].choice1);
-    $('#choice2').text(arrayQuestions[i].choice2);
-    $('#choice3').text(arrayQuestions[i].choice3);
-    $('#choice4').text(arrayQuestions[i].choice4);
-    startClock();
+    if (currentIndex < arrayQuestions.length) {
+      $('.results').hide();
+      $('.question').show();
+      $('#question').text(arrayQuestions[i].question);
+      $('#choice1').text(arrayQuestions[i].choice1);
+      $('#choice2').text(arrayQuestions[i].choice2);
+      $('#choice3').text(arrayQuestions[i].choice3);
+      $('#choice4').text(arrayQuestions[i].choice4);
+      startClock();
+    } else {
+      displayScore();
+    }
   }
 
   function checkAnswer(answer, correctAnswer) {
@@ -172,7 +186,14 @@ $(document).ready(function() {
     }
   }
 
-  function displayScore() {}
+  function displayScore() {
+    $('.timer').hide();
+    $('.results').hide();
+    $('.finalScore').show();
+    $('#correct').text(ansCorrect);
+    $('#incorrect').text(ansIncorrect);
+    $('#noanswer').text(ansNoAnswer);
+  }
 
   function displayResults(result, correctAnswer) {
     if (currentIndex < arrayQuestions.length) {
@@ -217,4 +238,6 @@ $(document).ready(function() {
     resetClock();
     displayResults(result, correctAnswer);
   });
+
+  $('#restart').on('click', function() {});
 });

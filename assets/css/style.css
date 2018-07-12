@@ -92,7 +92,9 @@ button {
 
 .timer,
 .question,
-.results {
+.results,
+.score,
+.finalScore {
   display: none;
   margin: 0 auto;
 }
