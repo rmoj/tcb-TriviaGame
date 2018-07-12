@@ -162,26 +162,32 @@ $(document).ready(function() {
     startClock();
   }
 
-  function displayScore() {}
-
   function checkAnswer(answer, correctAnswer) {
     if (answer === correctAnswer) {
+      ansCorrect++;
       return 'Correct!';
     } else {
+      ansIncorrect++;
       return 'Duh...Nope';
     }
   }
 
+  function displayScore() {}
+
   function displayResults(result, correctAnswer) {
-    clearContents();
-    $('.question').hide();
-    $('.results').show();
-    $('#result').text(result);
-    $('#fact').text(arrayQuestions[currentIndex].fact);
-    var resultsTimeout = setTimeout(function() {
-      currentIndex++;
-      displayQuestion(currentIndex);
-    }, delayBetweenQuestions);
+    if (currentIndex < arrayQuestions.length) {
+      clearContents();
+      $('.question').hide();
+      $('.results').show();
+      $('#result').text(result);
+      $('#fact').text(arrayQuestions[currentIndex].fact);
+      setTimeout(function() {
+        currentIndex++;
+        displayQuestion(currentIndex);
+      }, delayBetweenQuestions);
+    } else {
+      displayScore();
+    }
   }
 
   $('.choice').hover(
