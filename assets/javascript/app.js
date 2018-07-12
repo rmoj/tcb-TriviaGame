@@ -1,8 +1,17 @@
 'use strict';
 
 $(document).ready(function() {
-  var timeLeft = 15;
+  var timeLimit = 15;
+  var timeLeft;
   var countdown;
+  var timesUp;
+  var delayBetweenQuestions = 5000;
+  var factTimeout;
+  var userChoice;
+  var currentIndex = 0;
+  var ansCorrect = 0;
+  var ansIncorrect = 0;
+  var ansNoAnswer = 0;
 
   var arrayQuestions = [
     {
@@ -109,29 +118,80 @@ $(document).ready(function() {
 
   function startClock() {
     clearInterval(countdown);
+    timeLeft = timeLimit;
+    clearTimeout(timesUp);
     countdown = setInterval(decrement, 1000);
+    timesUp = setTimeout(function() {
+      if (currentIndex < arrayQuestions.length - 1) {
+        displayFact();
+        ansNoAnswer++;
+      } else {
+        displayScore();
+      }
+    }, timeLimit * 1000);
   }
+
   function decrement() {
     if (timeLeft > 0) {
       timeLeft--;
-      $('#clock').text(timeLeft);
+      displayTime();
     } else {
       reset();
     }
   }
   function reset() {
     clearInterval(countdown);
-    timeLeft = 15;
+    clearTimeout(timesUp);
+    timeLeft = timeLimit;
   }
+
+  function displayTime() {
+    $('#clock').text(timeLeft);
+  }
+
+  function displayQuestion(i) {
+    $('#question').text(arrayQuestions[i].question);
+    $('#choice1').text(arrayQuestions[i].choice1);
+    $('#choice2').text(arrayQuestions[i].choice2);
+    $('#choice3').text(arrayQuestions[i].choice3);
+    $('#choice4').text(arrayQuestions[i].choice4);
+  }
+
+  function displayFact() {
+    $('.toggle').text('');
+    $('#choice1').text(arrayQuestions[currentIndex].fact);
+    factTimeout = setTimeout(function() {
+      currentIndex++;
+      displayQuestion(currentIndex);
+    }, delayBetweenQuestions);
+  }
+
+  function displayScore() {}
+
+  function checkAnswer(i) {
+    if (arrayQuestions[i].answer) {
+    }
+  }
+
+  $('.choice').hover(
+    function() {
+      $(this).css({ 'font-weight': 'bold', color: 'green' });
+    },
+    function() {
+      $(this).css({ 'font-weight': 'normal', color: 'black' });
+    }
+  );
 
   $('#btnStart').on('click', function() {
-    toggleView();
-  });
-
-  function toggleView() {
     $('.toggle').show();
     $('#btnStart').hide();
-  }
+    currentIndex = 0;
+    displayQuestion(currentIndex);
+  });
 
-  startClock();
+  $('.choice').on('click', function() {
+    userChoice = $(this)
+      .attr('id')
+      .slice(-1);
+  });
 });
