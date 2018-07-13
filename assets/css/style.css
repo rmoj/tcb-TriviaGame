@@ -63,7 +63,7 @@ button {
 }
 
 #startover {
-  font-size: 15px;
+  font-size: 24px;
 }
 
 .timer {
@@ -102,11 +102,10 @@ h2 {
 
 .quiz {
   display: none;
-  /* margin: 0 auto; */
 }
 
 #resultwrapper {
-  width: 70%;
+  width: 50%;
   margin: auto;
   font-size: 24px;
 }
@@ -119,7 +118,6 @@ h2 {
   width: 70%;
   margin-right: auto;
   margin-left: auto;
-  margin-top: -50px;
   font-size: 24px;
 }
 

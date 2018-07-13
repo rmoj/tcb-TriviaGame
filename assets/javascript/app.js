@@ -1,8 +1,8 @@
 'use strict';
 
 $(document).ready(function() {
-  var timeLimit = 10; //constant
-  var delayBetweenQuestions = 2000; //constant
+  var timeLimit = 11;
+  var delayBetweenQuestions = 3000;
   var timeLeft;
   var countdown;
   var timesUp;
@@ -114,7 +114,7 @@ $(document).ready(function() {
   ];
 
   function initQuiz() {
-    currentIndex = 9;
+    currentIndex = 0;
     ansCorrect = 0;
     ansIncorrect = 0;
     ansNoAnswer = 0;
@@ -161,6 +161,7 @@ $(document).ready(function() {
       console.log(currentIndex, arrayQuestions.length);
       $('.results').hide();
       $('.quiz').show();
+      $('.timer').show();
       $('#question').text(arrayQuestions[i].question);
       $('#choice1').text(arrayQuestions[i].choice1);
       $('#choice2').text(arrayQuestions[i].choice2);
