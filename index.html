@@ -20,30 +20,38 @@
     </div>
     <div id="game">
       <div id="start">
-        <button>START</button>
+        <button id="startBtn">START</button>
       </div>
-      <div class="timer">Time remaining:
-        <span id="clock">15</span> Seconds
+      <div class="timer">Seconds remaining:
+        <span id="clock">15</span>
       </div>
-      <div id="question" class="question">Question</div>
-      <div id="choice1" class="choice question">choice 1</div>
-      <div id="choice2" class="choice question">choice 2</div>
-      <div id="choice3" class="choice question">choice 3</div>
-      <div id="choice4" class="choice question">choice 4</div>
-      <div id="result" class="results"></div>
-      <div id="fact" class="results"></div>
-      <div id="scoreheader" class="finalScore">All Done! Here's how you did.</div>
-      <div class="finalScore">Correct Answers:
-        <span id="correct"></span>
+      <div id="quizwrapper" class="quiz">
+        <div id="question" class="quiz">Question</div>
+        <div id="choice1" class="choice quiz">choice 1</div>
+        <div id="choice2" class="choice quiz">choice 2</div>
+        <div id="choice3" class="choice quiz">choice 3</div>
+        <div id="choice4" class="choice quiz">choice 4</div>
       </div>
-      <div class="finalScore">Incorrect Answers:
-        <span id="incorrect"></span>
+      <div id="resultwrapper" class="results">
+        <div id="result" class="results"></div>
+        <div id="fact" class="results"></div>
       </div>
-      <div class="finalScore">Unanswered:
-        <span id="noanswer"></span>
-      </div>
-      <div class="finalScore">
-        <button>START OVER</button>
+      <div id="scoreboard" class="scores">
+        <div class="scores">
+          <h2> All Done! Here's how you did.</h2>
+        </div>
+        <div class="scores">Correct Answers:
+          <span id="correct"></span>
+        </div>
+        <div class="scores">Incorrect Answers:
+          <span id="incorrect"></span>
+        </div>
+        <div class="scores">Unanswered:
+          <span id="noanswer"></span>
+        </div>
+        <div id="restart" class="scores">
+          <button id="startover">START OVER</button>
+        </div>
       </div>
     </div>
   </div>
