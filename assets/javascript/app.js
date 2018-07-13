@@ -1,7 +1,7 @@
 'use strict';
 
 $(document).ready(function() {
-  var timeLimit = 11;
+  var timeLimit = 10;
   var delayBetweenQuestions = 3000;
   var timeLeft;
   var countdown;
@@ -127,6 +127,7 @@ $(document).ready(function() {
   function startClock() {
     clearInterval(countdown);
     timeLeft = timeLimit;
+    displayTime();
     clearTimeout(timesUp);
     countdown = setInterval(decrement, 1000);
     timesUp = setTimeout(function() {
@@ -158,7 +159,6 @@ $(document).ready(function() {
 
   function displayQuestion(i) {
     if (currentIndex < arrayQuestions.length) {
-      console.log(currentIndex, arrayQuestions.length);
       $('.results').hide();
       $('.quiz').show();
       $('.timer').show();
