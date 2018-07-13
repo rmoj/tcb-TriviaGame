@@ -214,7 +214,7 @@ $(document).ready(function() {
       $(this).css({ 'font-style': 'italic', color: 'green' });
     },
     function() {
-      $(this).css({ 'font-weight': 'normal', color: 'black' });
+      $(this).css({ 'font-style': 'normal', color: 'black' });
     }
   );
 
